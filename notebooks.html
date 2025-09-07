@@ -376,9 +376,9 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deteccion-de-valores-faltaantes"><strong>2. Detección de Valores Faltaantes:</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-del-tipo-de-faltante"><strong>3. Clasificación del Tipo de Faltante:</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discusion-sobre-imputabilidad"><strong>4. Discusión sobre Imputabilidad:</strong></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sexo-edad-ciudad-altura-cm-nivel-educativo-ingresos-demanda-segmento"><strong>Sexo, Edad, Ciudad, altura_cm, nivel_educativo, ingresos, demanda, segmento:</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gasto-mensual-y-estado-civil"><strong>Gasto_Mensual y Estado_Civil:</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puntuacion-credito"><strong>Puntuación_Credito:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sexo-edad-ciudad-altura-cm-nivel-educativo-ingresos-demanda-y-segmento"><strong>4.1. Sexo, Edad, Ciudad, altura_cm, nivel_educativo, ingresos, demanda y segmento:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gasto-mensual-y-estado-civil"><strong>4.2. Gasto_Mensual y Estado_Civil:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puntuacion-credito"><strong>4.3. Puntuación_Credito:</strong></a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#representacion-de-la-imputacion"><strong>5. Representación de la Imputación:</strong></a><ul class="visible nav section-nav flex-column">
@@ -707,7 +707,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_missing_vs_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">numeric_vars</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">numeric_vars</span><span class="p">:</span>
-        <span class="c1"># Crear indicador de nulos</span>
         <span class="n">missing_col</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;missing_</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">df</span><span class="p">[</span><span class="n">missing_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
         
@@ -1324,19 +1323,17 @@ memory usage: 93.9+ KB
 <h1><strong>3. Clasificación del Tipo de Faltante:</strong><a class="headerlink" href="#clasificacion-del-tipo-de-faltante" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo de uso con tus variables numéricas</span>
-<span class="n">numeric_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edad&quot;</span><span class="p">,</span> <span class="s2">&quot;demanda&quot;</span><span class="p">,</span> <span class="s2">&quot;altura_cm&quot;</span><span class="p">,</span> <span class="s2">&quot;ingresos&quot;</span><span class="p">,</span> <span class="s2">&quot;gasto_mensual&quot;</span><span class="p">,</span> <span class="s2">&quot;puntuacion_credito&quot;</span><span class="p">]</span>
-<span class="n">plot_missing_vs_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">numeric_vars</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_missing_vs_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">num_var</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1c4c3225cdf0b7bb2b2c920c4c5154175100d3ca409c331fa0ea96858fcb7ba4.png" src="_images/1c4c3225cdf0b7bb2b2c920c4c5154175100d3ca409c331fa0ea96858fcb7ba4.png" />
+<img alt="_images/26ccc2deba22917a6cb8fdb8d0736ff7347c327b7dec09358bb4ffb6b65e8075.png" src="_images/26ccc2deba22917a6cb8fdb8d0736ff7347c327b7dec09358bb4ffb6b65e8075.png" />
+<img alt="_images/59a0c3d7889f1ddb7addc491574a4dd5c102ec4c6e9d1da68f421663d61f23ca.png" src="_images/59a0c3d7889f1ddb7addc491574a4dd5c102ec4c6e9d1da68f421663d61f23ca.png" />
+<img alt="_images/33ad2c7eb5bda20bd1f02355faf0cd7c1b97bbadee722ada5b6c1e302e36d59e.png" src="_images/33ad2c7eb5bda20bd1f02355faf0cd7c1b97bbadee722ada5b6c1e302e36d59e.png" />
+<img alt="_images/a394d51f53c3edbd1f2f2f6aa88f492f449c081fbc1300bc5f5031ce8fea1c0a.png" src="_images/a394d51f53c3edbd1f2f2f6aa88f492f449c081fbc1300bc5f5031ce8fea1c0a.png" />
+<img alt="_images/cbfc85622647be0a93fec9ec8048fdfcf86f75639c61941e40981ceb11385e64.png" src="_images/cbfc85622647be0a93fec9ec8048fdfcf86f75639c61941e40981ceb11385e64.png" />
 <img alt="_images/23ada76e5ed650096e267c2c5f1720436136b2ddbccb3040c16baac01938c62b.png" src="_images/23ada76e5ed650096e267c2c5f1720436136b2ddbccb3040c16baac01938c62b.png" />
-<img alt="_images/446ce692570d6e423872852934f1e84296412fbc0efc51647738a12a59d3a4a4.png" src="_images/446ce692570d6e423872852934f1e84296412fbc0efc51647738a12a59d3a4a4.png" />
-<img alt="_images/3d9ad01facec1373b82854afdc93507cb1f4a158a7615cb2aca793ad79054cab.png" src="_images/3d9ad01facec1373b82854afdc93507cb1f4a158a7615cb2aca793ad79054cab.png" />
-<img alt="_images/1182949ad755c6c60da81ff027796c4a0490f8b79855facf1ed028951e14f70d.png" src="_images/1182949ad755c6c60da81ff027796c4a0490f8b79855facf1ed028951e14f70d.png" />
-<img alt="_images/faf91bd43e81e96bb264c8e87d11501564794a71fc1c91bfbdf8c67d3e8826f5.png" src="_images/faf91bd43e81e96bb264c8e87d11501564794a71fc1c91bfbdf8c67d3e8826f5.png" />
 </div>
 </div>
 <p>Se observa que la mayoría de los casos presentan diferencias en variables observadas, lo que indica que los datos no faltan completamente al azar. Las variables edad, demanda, altura_cm, ingresos y gasto_mensual muestran ligeras o moderadas diferencias en variables como ingresos, gasto_mensual, puntuación de crédito y edad al comparar los grupos con y sin datos faltantes. Esto sugiere que la presencia de valores nulos en estas variables depende de otras variables observadas, pero no necesariamente del valor faltante en sí. Por esta razón, los nulos en estas variables se clasifican como MAR (Missing At Random), ya que su ausencia está condicionada por información disponible en el resto del conjunto de datos.</p>
@@ -1370,8 +1367,8 @@ memory usage: 93.9+ KB
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="discusion-sobre-imputabilidad">
 <h1><strong>4. Discusión sobre Imputabilidad:</strong><a class="headerlink" href="#discusion-sobre-imputabilidad" title="Link to this heading">#</a></h1>
-<section id="sexo-edad-ciudad-altura-cm-nivel-educativo-ingresos-demanda-segmento">
-<h2><strong>Sexo, Edad, Ciudad, altura_cm, nivel_educativo, ingresos, demanda, segmento:</strong><a class="headerlink" href="#sexo-edad-ciudad-altura-cm-nivel-educativo-ingresos-demanda-segmento" title="Link to this heading">#</a></h2>
+<section id="sexo-edad-ciudad-altura-cm-nivel-educativo-ingresos-demanda-y-segmento">
+<h2><strong>4.1. Sexo, Edad, Ciudad, altura_cm, nivel_educativo, ingresos, demanda y segmento:</strong><a class="headerlink" href="#sexo-edad-ciudad-altura-cm-nivel-educativo-ingresos-demanda-y-segmento" title="Link to this heading">#</a></h2>
 <p><strong>¿Se justifica imputar o dejar los valores nulos?</strong><br />
 R/ En el caso de estas tres variables, resulta justificable imputar los valores faltantes, dado que el porcentaje de ausencias es muy reducido (menor o igual al 20%) y su tratamiento permitiría obtener un análisis más claro y consistente.</p>
 <p><strong>¿Qué riesgo tendría imputar estas variables?</strong><br />
@@ -1380,7 +1377,7 @@ R/ El riesgo es bajo debido al bajo porcentaje de valores faltantes. Al aplicar 
 R/ Para las variables <strong>Sexo</strong>,<strong>Ciudad</strong>,<strong>nivel_educativo</strong> y <strong>segmento</strong> la técnica más apropiada sería la imputación mediante la <strong>moda</strong> o <strong>Regresión Logistica</strong>, mientras que, en el caso de las variables <strong>Edad</strong>, <strong>altura_cm</strong>, <strong>ingresos</strong> y <strong>demanda</strong> resulta pertinente emplear métodos como la <strong>mediana</strong>, <strong>media</strong> y <strong>regresión</strong> según la distribución de los datos.</p>
 </section>
 <section id="gasto-mensual-y-estado-civil">
-<h2><strong>Gasto_Mensual y Estado_Civil:</strong><a class="headerlink" href="#gasto-mensual-y-estado-civil" title="Link to this heading">#</a></h2>
+<h2><strong>4.2. Gasto_Mensual y Estado_Civil:</strong><a class="headerlink" href="#gasto-mensual-y-estado-civil" title="Link to this heading">#</a></h2>
 <p><strong>¿Se justifica imputar o dejar los valores nulos?</strong><br />
 R/ Dado que el porcentaje de valores faltantes se encuentra entre un 20% y un 40%, se justifica aplicar imputación; sin embargo, es necesario hacerlo con mayor precaución.</p>
 <p><strong>¿Qué riesgo tendría imputar estas variables?</strong><br />
@@ -1389,7 +1386,7 @@ R/ El riesgo aumenta en comparación con porcentajes inferiores al 20%. No obsta
 R/ En el caso de las variables <code class="docutils literal notranslate"><span class="pre">gasto_mensual</span></code> y <code class="docutils literal notranslate"><span class="pre">estado_civil</span></code>, resulta recomendable emplear técnicas de imputación avanzada, tales como <strong>kNN</strong>, <strong>regresión múltiple</strong>, <strong>modelos basados en árboles</strong> o <strong>MICE</strong>.</p>
 </section>
 <section id="puntuacion-credito">
-<h2><strong>Puntuación_Credito:</strong><a class="headerlink" href="#puntuacion-credito" title="Link to this heading">#</a></h2>
+<h2><strong>4.3. Puntuación_Credito:</strong><a class="headerlink" href="#puntuacion-credito" title="Link to this heading">#</a></h2>
 <p><strong>¿Se justifica imputar o dejar los valores nulos?</strong><br />
 R/ Con un 50% de valores faltantes, la imputación es cuestionable, ya que el nivel de ausencia es demasiado alto y puede comprometer la validez del análisis. En este escenario, es necesario evaluar si conviene imputar, descartar la variable.</p>
 <p><strong>¿Qué riesgo tendría imputar esta variable?</strong><br />
@@ -1404,13 +1401,11 @@ R/ En caso de decidir imputar, no se recomienda utilizar métodos simples como l
 <h2><strong>5.1. Pruebas de Normalidad:</strong><a class="headerlink" href="#pruebas-de-normalidad" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numericas</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numericas</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-    <span class="n">serie</span> <span class="o">=</span> <span class="n">numericas</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">serie</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># evitar error en variables con muy pocos datos</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">num_var</span><span class="p">:</span>
+    <span class="n">serie</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">serie</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span> 
         <span class="n">stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">serie</span><span class="p">)</span>
         <span class="n">resultados</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
             <span class="s2">&quot;Variable&quot;</span><span class="p">:</span> <span class="n">col</span><span class="p">,</span>
@@ -1425,19 +1420,13 @@ R/ En caso de decidir imputar, no se recomienda utilizar métodos simples como l
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                      Variable  Estadístico       p-valor
-0                         edad     0.959825  1.132185e-15
-1                    altura_cm     0.998442  5.911472e-01
-2                     ingresos     0.997857  3.244752e-01
-3                gasto_mensual     0.998289  6.752081e-01
-4           puntuacion_credito     0.998446  9.405074e-01
-5                      demanda     0.984921  1.129628e-07
-6                 missing_edad     0.159048  9.891767e-55
-7              missing_demanda     0.426267  1.646847e-48
-8            missing_altura_cm     0.300174  1.077955e-51
-9             missing_ingresos     0.378823  9.032964e-50
-10       missing_gasto_mensual     0.538497  3.847722e-45
-11  missing_puntuacion_credito     0.636591  1.375632e-41
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             Variable  Estadístico       p-valor
+0                edad     0.959825  1.132185e-15
+1           altura_cm     0.998442  5.911472e-01
+2            ingresos     0.997857  3.244752e-01
+3       gasto_mensual     0.998289  6.752081e-01
+4  puntuacion_credito     0.998446  9.405074e-01
+5             demanda     0.984921  1.129628e-07
 </pre></div>
 </div>
 </div>
@@ -2437,7 +2426,7 @@ Interpretación: p &lt; 0.05 → diferencia significativa | p ≥ 0.05 → no si
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6da4f2d9a601dc0fe434e5f23c00302c9c31f98d473e47ac5bb4f1344fbdef5f.png" src="_images/6da4f2d9a601dc0fe434e5f23c00302c9c31f98d473e47ac5bb4f1344fbdef5f.png" />
+<img alt="_images/29d06e168567108fc30076e3ff5bdaff676e2be336d0ad28c1fa5419de65af1c.png" src="_images/29d06e168567108fc30076e3ff5bdaff676e2be336d0ad28c1fa5419de65af1c.png" />
 </div>
 </div>
 <p>Los histogramas muestran que la distribución de categorías después de la imputación mantiene una estructura proporcionalmente coherente con la distribución original, aunque con un aumento esperado en las frecuencias absolutas debido al mayor tamaño muestral.</p>
@@ -2451,7 +2440,7 @@ Interpretación: p &lt; 0.05 → diferencia significativa | p ≥ 0.05 → no si
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/220cc0da898702c4011627d7eec9a7483d16fcff86fb5236720ddff00f56be7f.png" src="_images/220cc0da898702c4011627d7eec9a7483d16fcff86fb5236720ddff00f56be7f.png" />
+<img alt="_images/58a2a79384797bf09048e6563d61f77471101efec2d9d3cf1a570a03eb88b772.png" src="_images/58a2a79384797bf09048e6563d61f77471101efec2d9d3cf1a570a03eb88b772.png" />
 </div>
 </div>
 <p>En la variable segmento, antes de la imputación se observaba que la categoría B era la más frecuente, seguida de A y luego C, con una distribución claramente desigual entre los grupos. Tras la imputación por Hotdeck, las tres categorías aumentaron su frecuencia absoluta, manteniendo a B como la categoría predominante, pero con un crecimiento proporcional mayor en A y C. Esto generó una distribución más equilibrada entre los segmentos, reduciendo parcialmente la concentración inicial en B.</p>
@@ -2465,7 +2454,7 @@ Interpretación: p &lt; 0.05 → diferencia significativa | p ≥ 0.05 → no si
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cdfd67193d8018c4c9ef6bafc6607e7a0246f7db522e0693f32484312b1f6207.png" src="_images/cdfd67193d8018c4c9ef6bafc6607e7a0246f7db522e0693f32484312b1f6207.png" />
+<img alt="_images/6eeb8453f542fc53b9c3e9549b740ada85f630997cd786b072a7eaf960424332.png" src="_images/6eeb8453f542fc53b9c3e9549b740ada85f630997cd786b072a7eaf960424332.png" />
 </div>
 </div>
 <p>En la variable nivel educativo, antes de la imputación la categoría Secundaria era la más frecuente, seguida de Universitario y Técnico, mientras que Posgrado presentaba la menor representación. Tras la imputación por Hotdeck, todas las categorías aumentaron en frecuencia absoluta, manteniéndose Secundaria como la predominante, pero con un incremento proporcional también en Técnico y Universitario, y en menor medida en Posgrado. Esto generó una distribución más balanceada entre los niveles educativos, aunque la concentración en Secundaria continúa siendo la más alta.</p>
@@ -2479,7 +2468,7 @@ Interpretación: p &lt; 0.05 → diferencia significativa | p ≥ 0.05 → no si
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f1e20f12aea99701f3e1b31b9253909cbd8daa2b1192c46f2274dd94024d50d4.png" src="_images/f1e20f12aea99701f3e1b31b9253909cbd8daa2b1192c46f2274dd94024d50d4.png" />
+<img alt="_images/278da30a5c5867b1863a3cb5d786eb0152d1abfefbe09b59dfc344ca55a9f2c2.png" src="_images/278da30a5c5867b1863a3cb5d786eb0152d1abfefbe09b59dfc344ca55a9f2c2.png" />
 </div>
 </div>
 <p>En la variable ciudad, antes de la imputación la categoría más frecuente era Bogotá, seguida de Medellín y Cali, mientras que Barranquilla y especialmente Cartagena presentaban menor representación. Tras la imputación por Hotdeck, todas las ciudades aumentaron en frecuencia absoluta, manteniéndose Bogotá como la categoría predominante, aunque con crecimientos también visibles en las demás, lo que permitió conservar la estructura general de la distribución sin generar un sesgo marcado hacia una sola ciudad.</p>
@@ -2493,7 +2482,7 @@ Interpretación: p &lt; 0.05 → diferencia significativa | p ≥ 0.05 → no si
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/12d869edcc093abd36a9c11ccea7dab183e252a680a84771f00bf781807789fc.png" src="_images/12d869edcc093abd36a9c11ccea7dab183e252a680a84771f00bf781807789fc.png" />
+<img alt="_images/7ba6b19b58c69ba12c43cee238f3fe5eda6a43f174098af73ce025e8934e5c3e.png" src="_images/7ba6b19b58c69ba12c43cee238f3fe5eda6a43f174098af73ce025e8934e5c3e.png" />
 </div>
 </div>
 <p>En la variable sexo, antes de la imputación la distribución estaba relativamente equilibrada entre mujeres y hombres, aunque con una ligera mayor frecuencia en la categoría femenina. Tras la imputación por Hotdeck, ambas categorías aumentaron en frecuencia absoluta, manteniéndose el predominio de las mujeres y conservándose el balance general entre los dos grupos, sin generar un sesgo importante hacia alguno de ellos.</p>
@@ -2536,40 +2525,40 @@ Interpretación: p &lt; 0.05 → diferencia significativa | p ≥ 0.05 → no si
     <tr>
       <th>0</th>
       <td>estado_civil</td>
-      <td>34.828766</td>
-      <td>1.324069e-07</td>
+      <td>25.393768</td>
+      <td>0.000013</td>
       <td>3</td>
       <td>Distribuciones diferentes</td>
     </tr>
     <tr>
       <th>1</th>
       <td>segmento</td>
-      <td>5.539320</td>
-      <td>6.268333e-02</td>
+      <td>4.001589</td>
+      <td>0.135228</td>
       <td>2</td>
       <td>Distribuciones iguales</td>
     </tr>
     <tr>
       <th>2</th>
       <td>nivel_educativo</td>
-      <td>1.263099</td>
-      <td>7.379137e-01</td>
+      <td>1.773156</td>
+      <td>0.620794</td>
       <td>3</td>
       <td>Distribuciones iguales</td>
     </tr>
     <tr>
       <th>3</th>
       <td>ciudad</td>
-      <td>0.293814</td>
-      <td>9.902100e-01</td>
+      <td>0.043008</td>
+      <td>0.999772</td>
       <td>4</td>
       <td>Distribuciones iguales</td>
     </tr>
     <tr>
       <th>4</th>
       <td>sexo</td>
-      <td>0.013025</td>
-      <td>9.091386e-01</td>
+      <td>0.003997</td>
+      <td>0.949589</td>
       <td>1</td>
       <td>Distribuciones iguales</td>
     </tr>
@@ -2788,7 +2777,7 @@ Interpretación: p &lt; 0.05 → diferencia significativa | p ≥ 0.05 → no si
 <tr class="row-even"><td><p><strong>Nivel educativo</strong></p></td>
 <td><p>10%</p></td>
 <td><p>MAR</p></td>
-<td><p>Hot-Deck</p></td>
+<td><p>KNN / Hot-Deck</p></td>
 <td><p>Chi²: distribuciones iguales</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Ciudad</strong></p></td>
@@ -2899,9 +2888,9 @@ Interpretación: p &lt; 0.05 → diferencia significativa | p ≥ 0.05 → no si
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deteccion-de-valores-faltaantes"><strong>2. Detección de Valores Faltaantes:</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-del-tipo-de-faltante"><strong>3. Clasificación del Tipo de Faltante:</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discusion-sobre-imputabilidad"><strong>4. Discusión sobre Imputabilidad:</strong></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sexo-edad-ciudad-altura-cm-nivel-educativo-ingresos-demanda-segmento"><strong>Sexo, Edad, Ciudad, altura_cm, nivel_educativo, ingresos, demanda, segmento:</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gasto-mensual-y-estado-civil"><strong>Gasto_Mensual y Estado_Civil:</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puntuacion-credito"><strong>Puntuación_Credito:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sexo-edad-ciudad-altura-cm-nivel-educativo-ingresos-demanda-y-segmento"><strong>4.1. Sexo, Edad, Ciudad, altura_cm, nivel_educativo, ingresos, demanda y segmento:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gasto-mensual-y-estado-civil"><strong>4.2. Gasto_Mensual y Estado_Civil:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puntuacion-credito"><strong>4.3. Puntuación_Credito:</strong></a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#representacion-de-la-imputacion"><strong>5. Representación de la Imputación:</strong></a><ul class="visible nav section-nav flex-column">
